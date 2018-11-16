@@ -6,6 +6,10 @@
 - Postgres SQL / MySQL
 
 ## Run app
+### Requirements 
+- Have Postgres SQL installed (https://www.postgresql.org/download/)
+- Create table students_crud
+- Install JDK 1.8 (https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 ### Clone project
 - git clone https://github.com/Ochibooh/spring-boot-student-teacher-crud.git
 ### Compile project
