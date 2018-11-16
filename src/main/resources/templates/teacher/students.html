@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title th:utext="'Student Teacher Crud : ' + ${title}"></title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default border-radius-0">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand text-uppercase t-small-bold text-primary" th:href="@{/teacher/home}">Teacher Student Crud</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a class="text-uppercase t-small" th:href="@{/teacher/home}">Home</a></li>
+                    <li><a class="text-uppercase t-small" th:href="@{/teacher/teachers}">Teachers</a></li>
+                    <li><a class="text-uppercase t-small nav-active" th:href="@{/teacher/students}">Students</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="text-danger" th:href="@{/logout}"><i class="fa fa-sign-out-alt"></i>&nbsp;Log out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success text-center" role="alert" th:if="${success}" th:utext="${message}"></div>
+            <div class="alert alert-danger text-center" role="alert" th:if="${success == false}" th:utext="${message}"></div>
+        </div>
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="text-uppercase t-bold">Registered students</h4>
+                </div>
+                <div class="col-md-12">
+                    <table class="table table-responsive table-striped table-bordered table-top">
+                        <thead class="text-uppercase table-header">
+                        <tr class="t-bold">
+                            <td width="30" class="text-center">No.</td>
+                            <td>First name</td>
+                            <td>Last name</td>
+                            <td>Email</td>
+                            <td class="text-center">Status</td>
+                            <td class="text-center" width="100"></td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="student:${students}">
+                            <td width="30" class="t-small text-center" th:utext="${1 + students.indexOf(student)}"></td>
+                            <td class="t-small" th:utext="${student.firstName.toUpperCase()}"></td>
+                            <td class="t-small" th:utext="${student.lastName.toUpperCase()}"></td>
+                            <td class="t-small" th:utext="${student.email.toUpperCase()}"></td>
+                            <td class="t-small text-center" th:utext="${student.active} == 1 ? '<span class=\'label label-success\'>ACTIVE</span>' : '<span class=\'label label-danger\'>SUSPENDED</span>'"></td>
+                            <td class="t-small text-center">
+                                <a class="btn btn-sm-sm btn-info" data-toggle="tooltip" title="Edit student's details" th:href="@{/teacher/students/edit} + '?k=' + ${student.id} + '#edit'"><i class="fa fa-pen"></i></a>
+                                <a class="btn btn-sm-sm btn-danger ml-10" data-toggle="tooltip" title="Suspend student" th:if="${student.active} == 1" th:href="@{/teacher/susact_user} + '?t=0&ac=0&i=' + ${student.id}"><i class="fa fa-times"></i></a>
+                                <a class="btn btn-sm-sm btn-success ml-10" data-toggle="tooltip" title="Reactivate student" th:if="${student.active} != 1" th:href="@{/teacher/susact_user} + '?t=0&ac=1&i=' + ${student.id}"><i class="fa fa-check"></i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p class="text-center mb-30" th:if="${students.size() <= 0}">No data available yet...</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4" id="new">
+            <div class="panel panel-default border-radius-0">
+                <div class="panel-heading">
+                    <h3 class="panel-title t-bold text-uppercase">New student</h3>
+                </div>
+                <div class="panel-body">
+                    <form th:action="@{/teacher/new_student}" th:name="new_student" method="post">
+                        <div class="form-group">
+                            <label for="fname" class="t-bold">Student's first name</label>
+                            <input type="text" class="form-control form-control-sm border-radius-0" id="fname" name="fname" th:value="${success == false} ? ${fname}" required autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="lname" class="t-bold">Student's last name</label>
+                            <input type="text" class="form-control form-control-sm border-radius-0" id="lname" name="lname" th:value="${success == false} ? ${lname}" required autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="t-bold">Student's email</label>
+                            <input type="email" class="form-control form-control-sm border-radius-0" id="email" name="email" th:value="${success == false} ? ${email}" required autocomplete="off">
+                        </div>
+                        <button type="submit" class="btn btn-info form-control mt-10 text-uppercase font-weight-bold border-radius-0"><i class="fa fa-check-circle"></i>&nbsp;Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/jquery.min.js}" type="application/javascript"></script>
+<script th:src="@{/js/bootstrap.min.js}" type="application/javascript"></script>
+<script th:src="@{/js/main.js}" type="application/javascript"></script>
+</body>
+</html>
