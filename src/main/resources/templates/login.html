@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title th:utext="'Student Teacher Crud : ' + ${title}"></title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-xs-12 text-center mt-30 mb-30">
+            <h3 class="t-bold">Teacher Student Crud</h3>
+            <h4 class="mt-10 t-bold">Welcome</h4>
+        </div>
+        <div class="col-xs-1 col-sm-3 col-md-4"></div>
+        <div class="col-xs-10 col-sm-6 col-md-4">
+            <form th:action="@{/login}" method="post">
+                <div class="alert alert-danger text-center" role="alert" th:if="${param.e}">
+                    Email address or password invalid, please try again
+                </div>
+                <div class="alert alert-danger text-center t-small" role="alert" th:if="${param.d}">
+                    Sorry you do not have access to this page. Please try again
+                </div>
+                <div class="form-group">
+                    <label for="email" class="t-bold">Your email address</label>
+                    <input type="email" class="form-control form-control-sm border-radius-0" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email address" required>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="t-bold">Password</label>
+                    <input type="password" class="form-control form-control-sm border-radius-0" id="password" name="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn btn-info form-control mt-10 text-uppercase font-weight-bold border-radius-0"><i class="fa fa-sign-in-alt"></i>&nbsp;Login</button>
+            </form>
+        </div>
+        <div class="col-xs-1 col-sm-3 col-md-4"></div>
+    </div>
+</div>
+
+<script th:src="@{/js/jquery.min.js}" type="application/javascript"></script>
+<script th:src="@{/js/bootstrap.min.js}" type="application/javascript"></script>
+<script th:src="@{/js/main.js}" type="application/javascript"></script>
+</body>
+</html>

@@ -1,1 +1,5 @@
-# spring-boot-student-teacher-crud
+# Spring Boot Teacher Student Crud
+
+- Multi user login
+- Postgres
+
