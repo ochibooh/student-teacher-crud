@@ -13,3 +13,4 @@
 2. mvn clean install
 3. Go to the target folder
 4. java -jar student_teacher_crud-0.0.1.war
+5. Open http://localhost:8080/
