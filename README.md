@@ -17,3 +17,13 @@
 ### Credentials
 - Default Teacher (**email** : teacher@mail.com , **password** : 123456)
 - Default Student (**email** : student@mail.com , **password** : 123456)
+
+## Screenshots
+#### Login
+![Login](/screenshots/login.png)
+#### Teacher
+![Teacher Home](/screenshots/teacher_home.jpg)
+![Teacher Teachers](/screenshots/teacher-teachers.png)
+![Teacher Students](/screenshots/teacher-students.png)
+#### Student
+![Student Home](/screenshots/student-home.png)
