@@ -14,3 +14,6 @@
 3. Go to the target folder
 4. java -jar student_teacher_crud-0.0.1.war
 5. Open http://localhost:8080/
+### Credentials
+- Default Teacher (email : teacher@mail.com , password : 123456)
+- Default Student (email : student@mail.com , password : 123456)
